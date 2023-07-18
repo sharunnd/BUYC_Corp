@@ -2,6 +2,8 @@ const express = require("express");
 const userRouter = express.Router()
 const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/user.model");
+const jwt = require('jsonwebtoken');
+require("dotenv").config()
 
 
 // Registration/signup route
@@ -18,7 +20,7 @@ userRouter.post("/signup",async(req,res)=>{
                 }else{
                     const user =new UserModel({name,email,password:hash,city})
                     await user.save()
-                    res.status(200).json({msg:"Registration succesful",user:req.body})
+                    res.status(200).json({msg:"Registration successful",user:req.body})
                 }
             });
         }
@@ -28,7 +30,29 @@ userRouter.post("/signup",async(req,res)=>{
     }
 })
 
-
+//login route
+userRouter.post("/login",async(req,res)=>{
+    const {email,password} = req.body;
+    try {
+        const user =await UserModel.findOne({email})
+        if(user){
+            bcrypt.compare(password, user.password, (err,result)=>{
+                if(result){
+                    let token = jwt.sign({ userID: user._id,user:user.name }, `${process.env.SECRET_KEY}`,{
+                        expiresIn:"7d"
+                    });
+                    res.status(200).json({msg:"Login successful",token})
+                }else{
+                    res.status(400).json({msg:"wrong credentials!"})
+                }
+            })
+        }else{
+          res.status(400).json({msg:"User Not Found!"})
+        }
+    } catch (err) {
+        res.status(400).json({error:err.message})
+    }
+})
 
 module.exports = {
     userRouter
