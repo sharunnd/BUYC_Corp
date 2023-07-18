@@ -54,6 +54,15 @@ userRouter.post("/login",async(req,res)=>{
     }
 })
 
+//logout route
+userRouter.get("/logout",(req,res)=>{
+    try {
+        res.status(200).json({msg:"Logout successful"})
+    } catch (err) {
+        res.status(400).json({error:err.message})
+    }
+})
+
 module.exports = {
     userRouter
 }
