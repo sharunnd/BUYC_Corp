@@ -6,7 +6,9 @@ const carSchema = mongoose.Schema({
     description:Array,
     price:Number,
     colors:Array,
-    mileage:Number
+    mileage:Number,
+    userID: String,
+    carID:String
 },{
     versionKey: false
 })
