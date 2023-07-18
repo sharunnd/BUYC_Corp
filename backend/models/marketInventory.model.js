@@ -5,7 +5,7 @@ const marketInventorySchema = mongoose.Schema({
     title: String,
     description:Array,
     price:Number,
-    colors:Array,
+    color:String,
     mileage:Number,
     userID: String,
     kilometers: Number,

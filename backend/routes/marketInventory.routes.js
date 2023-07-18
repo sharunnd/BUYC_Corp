@@ -19,8 +19,35 @@ marketInventoryRouter.post("/add",auth,async(req,res)=>{
 
 
 marketInventoryRouter.get("/",auth, async(req,res)=>{
+    const {query,color,minPrice,maxPrice,limit,page} = req.query
+
+    let queryObj = {};
+    let skip = {}
     try {
-      const car = await MarketInventoryModel.find({userID:req.body.userID})   
+      queryObj.userID = req.body.userID
+      if(query){
+        queryObj.title = {$regex: query, $options: "i"};
+      }
+      if(color){
+        queryObj.color = color
+    }
+    if(minPrice){
+        queryObj.price = {$gte:minPrice}
+    }
+    if(maxPrice){
+        queryObj.price = {$lte:maxPrice}
+    }
+    if(minPrice && maxPrice){
+        queryObj.$and = [{price: {$lt :maxPrice}}, {price :{$gt: minPrice}}]
+    }
+
+    if(page){
+            
+        skip = limit * ( page - 1)
+
+    }
+      const car = await MarketInventoryModel.find(queryObj).sort().limit(limit).skip(skip)
+      console.log(query);   
       res.status(200).json({msg:"Details of cars", cars:car})
   } catch (err) {
       res.status(400).json({error:err.message})
