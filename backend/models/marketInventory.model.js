@@ -13,8 +13,7 @@ const marketInventorySchema = mongoose.Schema({
     original_paint: String,
     number_of_accidents:Number,
     previous_buyers:Number,
-    registration_place:String,
-    carID:String
+    registration_place:String
 },{
     versionKey: false
 })
