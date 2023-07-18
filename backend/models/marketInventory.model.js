@@ -1,6 +1,13 @@
 const mongoose = require("mongoose")
 
 const marketInventorySchema = mongoose.Schema({
+    image: String,
+    title: String,
+    description:Array,
+    price:Number,
+    colors:Array,
+    mileage:Number,
+    userID: String,
     kilometers: Number,
     major_scratches: Number,
     original_paint: String,
@@ -12,8 +19,8 @@ const marketInventorySchema = mongoose.Schema({
     versionKey: false
 })
 
-const OemModel = mongoose.model("mark-inv",marketInventorySchema)
+const MarketInventoryModel = mongoose.model("car",marketInventorySchema)
 
 module.exports = {
-    marketInventorySchema
+    MarketInventoryModel
 }
