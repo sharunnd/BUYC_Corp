@@ -4,9 +4,10 @@ const { MarketInventoryModel } = require("../models/marketInventory.model")
 
 
 
-const marketInventoryRoute = express.Router()
+const marketInventoryRouter = express.Router()
 
-marketInventoryRoute.post("/add",auth,async(req,res)=>{
+//for adding car details
+marketInventoryRouter.post("/add",auth,async(req,res)=>{
     try {
         const car = await MarketInventoryModel(req.body)   
         await car.save()
@@ -16,6 +17,56 @@ marketInventoryRoute.post("/add",auth,async(req,res)=>{
   }
 })
 
+
+marketInventoryRouter.get("/",auth, async(req,res)=>{
+    try {
+      const car = await MarketInventoryModel.find({userID:req.body.userID})   
+      res.status(200).json({msg:"Details of cars", cars:car})
+  } catch (err) {
+      res.status(400).json({error:err.message})
+  }
+})
+
+
+//for updating car details
+marketInventoryRouter.patch("/update/:carID",auth, async(req,res)=>{
+
+    const userIDinUserDoc = req.body.userID;
+    const {carID} = req.params;
+    try {
+        const car = await MarketInventoryModel.findOne({_id:carID})
+        const userIDinCarsDoc = car.userID;
+    if(userIDinUserDoc === userIDinCarsDoc){
+        await MarketInventoryModel.findByIdAndUpdate({_id:carID},req.body)
+        res.status(200).json({msg:`Car details has been updated`})
+    }else{
+      res.status(400).json({msg:"Not Authorized"})
+    }
+    } catch (err) {
+      res.status(400).json({error:err.message})
+    }
+})
+
+
+//for deleting the car details
+marketInventoryRouter.delete("/delete/:carID",auth, async(req,res)=>{
+    const userIDinUserDoc = req.body.userID;
+    const {carID} = req.params;
+    try {
+        const car = await MarketInventoryModel.findOne({_id:carID})
+        const userIDinCarDoc = car.userID;
+    if(userIDinUserDoc === userIDinCarDoc){
+        await MarketInventoryModel.findByIdAndDelete({_id:carID})
+        res.status(200).json({msg:`Car details has been deleted`})
+    }else{
+      res.status(400).json({msg:"Not Authorized"})
+    }
+    } catch (err) {
+      res.status(400).json({error:err.message})
+    }
+})
+
+
 module.exports = {
-    marketInventoryRoute
+    marketInventoryRouter
 }
