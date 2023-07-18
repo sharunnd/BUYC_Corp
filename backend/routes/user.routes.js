@@ -30,7 +30,7 @@ userRouter.post("/signup",async(req,res)=>{
     }
 })
 
-//login route
+// login route
 userRouter.post("/login",async(req,res)=>{
     const {email,password} = req.body;
     try {
