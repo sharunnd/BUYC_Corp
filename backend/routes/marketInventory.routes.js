@@ -18,7 +18,7 @@ marketInventoryRouter.post("/add",auth,async(req,res)=>{
 })
 
 
-marketInventoryRouter.get("/",auth, async(req,res)=>{
+marketInventoryRouter.get("/", async(req,res)=>{
     const {query,color,minPrice,maxPrice,limit,page} = req.query
 
     let queryObj = {};
