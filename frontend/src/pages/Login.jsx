@@ -70,7 +70,7 @@ import {
     })
     
     }
-    console.log(store);
+
     return (
       <Box
         bg="#f9efef"

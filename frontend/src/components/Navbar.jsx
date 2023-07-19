@@ -1,7 +1,23 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { LOGOUT_SUCCESS } from "../redux/loginReducer/actionTypes";
 
 export const Navbar = () => {
+    const isAuth = useSelector((store)=>store.loginReducer.isAuth)
+    const token = Cookies.get("token")
+    const dispatch=useDispatch()
+    useEffect(()=>{
+
+    },[isAuth])
+    
+    const handleLogout = ()=>{
+        
+        Cookies.remove("token")
+        dispatch({type:LOGOUT_SUCCESS})
+    }
   return (
     <Box
       bg="#dbdbf5"
@@ -19,9 +35,12 @@ export const Navbar = () => {
           <Link to={"/"}>Home</Link>
           <Link to={"/signup"}>Signup</Link>
         </Flex>
-        <Button mr={20} p={2} mt={2} mb={2}>
+        {token ? <Button mr={20} p={2} mt={2} mb={2} onClick={handleLogout}>
           Logout
-        </Button>
+        </Button> :
+        <Button mr={20} p={2} mt={2} mb={2}>
+         <Link to={"/login"}>Login</Link>
+        </Button>}
       </Flex>
     </Box>
   );
