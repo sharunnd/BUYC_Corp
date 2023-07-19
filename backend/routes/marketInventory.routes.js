@@ -1,18 +1,25 @@
 const express = require("express")
 const { auth } = require("../middlewares/auth.middleware")
 const { MarketInventoryModel } = require("../models/marketInventory.model")
-
+const {cloudinary} = require("../utils/cloudinary")
 
 
 const marketInventoryRouter = express.Router()
 
 //for adding car details
 marketInventoryRouter.post("/add",auth,async(req,res)=>{
+    const {image} = req.body
     try {
-        const car = await MarketInventoryModel(req.body)   
+        const result = await cloudinary.uploader.upload(image, {
+            folder: "buycars",
+            // width: 300,
+            // crop: "scale"
+        })
+        const car = new MarketInventoryModel({...req.body,image:result.secure_url})   
         await car.save()
         res.status(200).json({msg:"New car has been added", car})
   } catch (error) {
+    console.log(error.message);
       res.status(400).json({error:error.message})
   }
 })
