@@ -1,5 +1,5 @@
 import { Box, Flex, Grid } from "@chakra-ui/react"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCars } from "../redux/carsReducer/action";
 import { BuyCarCard } from "../components/BuyCarCard";
@@ -11,11 +11,14 @@ export const BuyCar = () =>{
 
   const allCars = useSelector((store) => store.carsReducer.allCars);
   const dispatch = useDispatch()
-
+  
+  const refresh = useSelector((store)=>store.carsReducer.refreshPage)
+ 
   console.log(allCars);
   useEffect(()=>{
     dispatch(getAllCars)
-  },[])
+  },[refresh])
+  console.log(refresh);
     return (
         <Flex>
             <SideBar />

@@ -1,8 +1,13 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Checkbox, Divider, HStack, Heading, Stack, Text } from "@chakra-ui/react"
+import { useState } from "react"
+import { useSearchParams } from "react-router-dom"
 
 
 
 export const SideBar = () =>{
+    const [searchParams,setSearchParams] = useSearchParams()
+    const initialPrice = searchParams.getAll("price")
+    const [price,setPrice] = useState(initialPrice || [])
     return (
         <Box ml={{ base: '10px', md: '15px', lg: '50px' }} mr={10}>
                 <HStack>
@@ -57,9 +62,9 @@ export const SideBar = () =>{
                         </h2>
                         <AccordionPanel  >
                             <Stack>
-                               <Checkbox >{"< 20"}</Checkbox>
-                               <Checkbox  >20-30</Checkbox>
-                               <Checkbox  >{"> 30"}</Checkbox>
+                               <Checkbox>{"< 20"}</Checkbox>
+                               <Checkbox>20-30</Checkbox>
+                               <Checkbox>{"> 30"}</Checkbox>
                             </Stack>
                         </AccordionPanel>
                     </AccordionItem>

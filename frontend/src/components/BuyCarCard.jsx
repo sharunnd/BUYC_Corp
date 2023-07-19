@@ -2,7 +2,9 @@ import { Box, Button, Flex, GridItem, Image, ListItem, Modal, ModalBody, ModalCl
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { CARS_DELETE_SUCCESS } from "../redux/carsReducer/actionTypes";
 
 export const BuyCarCard = ({
   color,
@@ -22,10 +24,7 @@ export const BuyCarCard = ({
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toast = useToast()
-    const [refresh,setRefresh] = useState(false)
-    useEffect(()=>{
-       
-    },[refresh])
+    const dispatch = useDispatch()
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -34,7 +33,7 @@ export const BuyCarCard = ({
     setIsModalOpen(false);
   };
   const token = Cookies.get("token")
-
+  
   const handleDelete = ()=>{
     try {
       axios.delete(`https://buycars-gksq.onrender.com/cars/delete/${_id}`,{
@@ -43,6 +42,7 @@ export const BuyCarCard = ({
             'Content-Type': 'application/json'
         }
         }).then((res)=>{
+          dispatch({type:CARS_DELETE_SUCCESS})
             toast({
                 position: "top",
                 title: `${res.data.msg}`,
@@ -50,7 +50,7 @@ export const BuyCarCard = ({
                 duration: 1000,
                 isClosable: true,
               });
-              setRefresh(!refresh)
+              
     })
     .catch((err)=>{
         toast({
@@ -67,6 +67,7 @@ export const BuyCarCard = ({
     }
     
   }
+  
   return (
     <>
     <GridItem boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5} rounded={10}>
