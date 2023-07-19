@@ -53,7 +53,7 @@ import {
         Cookies.set("token", res.data.token);
   
         setTimeout(() => {
-            navigate("/");
+            navigate("/buycar");
         }, 500);
     })
     .catch((err)=>{
