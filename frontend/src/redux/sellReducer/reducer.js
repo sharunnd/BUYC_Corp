@@ -1,4 +1,5 @@
-import { CARS_FAILURE, CARS_REQUEST, CARS_SUCCESS} from "./actionTypes"
+import { SELL_FAILURE, SELL_POST_SUCCESS, SELL_REQUEST } from "./actionTypes"
+
 
 const initialState = {
     isLoading:false,
@@ -10,20 +11,20 @@ const initialState = {
 
 export const reducer = (state=initialState,{type,payload})=>{
     switch(type){
-        case CARS_REQUEST:{
+        case SELL_REQUEST:{
             return {
                 ...state,isLoading:true
             }
         }
-        case CARS_FAILURE:{
+        case SELL_FAILURE:{
             return {
                 ...state,isLoading:false,isError:true
             }
         }
         
-        case CARS_SUCCESS:{
+        case SELL_POST_SUCCESS:{
             return {
-                ...state,isLoading:false,allCars:payload
+                ...state,isLoading:false
             }
         }       
         default:{

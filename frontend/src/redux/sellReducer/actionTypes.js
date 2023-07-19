@@ -1,4 +1,4 @@
-export const CARS_REQUEST = "CARS_REQUEST"
-export const CARS_FAILURE = "CARS_FAILURE"
+export const SELL_REQUEST = "SELL_REQUEST"
+export const SELL_FAILURE = "SELL_FAILURE"
 
-export const CARS_SUCCESS = "CARS_SUCCESS"
+export const SELL_POST_SUCCESS = "SELL_POST_SUCCESS"
