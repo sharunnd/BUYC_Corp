@@ -8,6 +8,6 @@ export const getAllOemSpecs =(paramsObj)=> (dispatch)=>{
         dispatch({type:OEM_SUCCESS,payload:res.data.oem})
     })
     .catch((err)=>{
-        dispatch(OEM_FAILURE)
+        dispatch({type:OEM_FAILURE})
     })
 }

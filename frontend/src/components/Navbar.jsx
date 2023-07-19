@@ -56,8 +56,8 @@ export const Navbar = () => {
         <Flex w={400} alignItems="center" justifyContent={"space-between"}>
           <Link to={"/"}>Home</Link>
           <Link to={"/oemspecs"}>OEM Specs</Link>
-          <Link to={"/"}>Home</Link>
-          <Link to={"/signup"}>Signup</Link>
+          <Link to={"/buycar"}>Buy</Link>
+          <Link to={"/sellcar"}>Sell</Link>
         </Flex>
         <Input w={200} type="text" onChange={(e)=>setQuery(e.target.value)} placeholder="Search here" bg={"white"}/>
         {token ? <Button mr={20} p={2} mt={2} mb={2} onClick={handleLogout}>
