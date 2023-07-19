@@ -16,7 +16,7 @@ import {
   import { AiOutlineFacebook } from "react-icons/ai";
   import { FcGoogle } from "react-icons/fc";
   import { useDispatch } from "react-redux";
-  import { NavLink } from "react-router-dom";
+  import { NavLink, useNavigate } from "react-router-dom";
   import axios from "axios";
 import { REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "../redux/signupReducer/actionTypes";
   export const Signup = () => {
@@ -25,6 +25,7 @@ import { REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "../redux/s
     const [city, setCity] = useState("");
     const [password, setPass] = useState("");
     const toast = useToast()
+    const navigate = useNavigate()
   
     const dispatch = useDispatch();
     const handleRegister = () => {
@@ -44,6 +45,9 @@ import { REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "../redux/s
         duration: 1000,
         isClosable: true,
       });
+      setTimeout(() => {
+        navigate("/login");
+    }, 500);
       console.log(res);
   })
   .catch((err)=>{

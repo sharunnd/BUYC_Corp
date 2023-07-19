@@ -5,7 +5,7 @@ export const Home = () => {
   return (
     <Box>
       <Box bgImage={homeImage} h={"100vh"} width={"100%"}>
-        <Text color={"white"} fontSize={100} fontWeight={600}>Sell your car in minutes</Text>
+        <Text color={"white"} fontSize={60} fontWeight={600}>Drive Your Deals: Buy And Sell Cars Hassle-Free</Text>
       </Box>
     </Box>
   );
