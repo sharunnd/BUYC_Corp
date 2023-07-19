@@ -24,7 +24,6 @@ marketInventoryRouter.get("/", async(req,res)=>{
     let queryObj = {};
     let skip = {}
     try {
-      queryObj.userID = req.body.userID
       if(query){
         queryObj.title = {$regex: query, $options: "i"};
       }
