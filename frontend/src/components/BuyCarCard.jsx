@@ -1,5 +1,7 @@
-import { Box, Button, Flex, GridItem, Image, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, UnorderedList } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Button, Flex, GridItem, Image, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, UnorderedList, useToast } from "@chakra-ui/react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const BuyCarCard = ({
@@ -19,7 +21,11 @@ export const BuyCarCard = ({
   registration_place
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const toast = useToast()
+    const [refresh,setRefresh] = useState(false)
+    useEffect(()=>{
+       
+    },[refresh])
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -27,6 +33,40 @@ export const BuyCarCard = ({
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const token = Cookies.get("token")
+
+  const handleDelete = ()=>{
+    try {
+      axios.delete(`https://buycars-gksq.onrender.com/cars/delete/${_id}`,{
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+        }).then((res)=>{
+            toast({
+                position: "top",
+                title: `${res.data.msg}`,
+                status: "success",
+                duration: 1000,
+                isClosable: true,
+              });
+              setRefresh(!refresh)
+    })
+    .catch((err)=>{
+        toast({
+            position: "top",
+            title: `${err.response.data.msg}`,
+            status: "error",
+            duration: 1000,
+            isClosable: true,
+          });
+        console.log(err);
+    })
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
   return (
     <>
     <GridItem boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5} rounded={10}>
@@ -35,8 +75,8 @@ export const BuyCarCard = ({
       <Text mt={2}>Price: ₹{price}</Text>
       <Button mt={2} onClick={openModal}>View Details</Button>
       <Flex mt={2} justifyContent={"space-around"}>
-        <Button>Edit</Button>
-        <Button>Delete</Button>
+        <Button><Link to={`/edit/${_id}`}>Edit</Link></Button>
+        <Button onClick={handleDelete}>Delete</Button>
       </Flex>
     </GridItem>
     <Modal isOpen={isModalOpen} onClose={closeModal}>

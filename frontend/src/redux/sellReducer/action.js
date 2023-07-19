@@ -1,13 +1,21 @@
 import axios from "axios"
-import { CARS_FAILURE, CARS_REQUEST, CARS_SUCCESS} from "./actionTypes"
 
+import Cookies from "js-cookie"
+import { SELL_FAILURE, SELL_POST_SUCCESS, SELL_REQUEST } from "./actionTypes"
 
-export const getAllCars =(dispatch)=>{
-    dispatch({type:CARS_REQUEST})
-    axios.get(`https://buycars-gksq.onrender.com/cars`).then((res)=>{
-        dispatch({type:CARS_SUCCESS,payload:res.data.cars})
+const token = Cookies.get("token")
+export const addCarDetails =(carObj)=>(dispatch)=>{
+    dispatch({type:SELL_REQUEST})
+    axios.post(`https://buycars-gksq.onrender.com/cars/add`,carObj,{
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+          }).then((res)=>{
+        dispatch({type:SELL_POST_SUCCESS})
+        console.log("sell",res);
     })
     .catch((err)=>{
-        dispatch({type:CARS_FAILURE})
+        dispatch({type:SELL_FAILURE})
     })
 }
