@@ -1,9 +1,10 @@
-import { CARS_FAILURE, CARS_REQUEST, CARS_SUCCESS} from "./actionTypes"
+import { CARS_DELETE_SUCCESS, CARS_FAILURE, CARS_REQUEST, CARS_SUCCESS} from "./actionTypes"
 
 const initialState = {
     isLoading:false,
     isError:false,
-    allCars:[]
+    allCars:[],
+    refreshPage:false
     
 }
 
@@ -25,7 +26,12 @@ export const reducer = (state=initialState,{type,payload})=>{
             return {
                 ...state,isLoading:false,allCars:payload
             }
-        }       
+        } 
+        case CARS_DELETE_SUCCESS:{
+            return {
+                ...state,isLoading:false,refreshPage:true
+            }
+        }      
         default:{
             return state
         }
