@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCars } from "../redux/carsReducer/action";
 import { BuyCarCard } from "../components/BuyCarCard";
 import { SideBar } from "../components/SideBar";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 
 
@@ -11,14 +12,21 @@ export const BuyCar = () =>{
 
   const allCars = useSelector((store) => store.carsReducer.allCars);
   const dispatch = useDispatch()
-  
+  const [searchParams] = useSearchParams()
   const refresh = useSelector((store)=>store.carsReducer.refreshPage)
- 
-  console.log(allCars);
+  const location = useLocation()
+  let obj={
+    params:{
+        color:searchParams.getAll("color"),
+        maxPrice:searchParams.get("maxPrice"),
+        minPrice:searchParams.get("minPrice")
+
+    }
+   }
   useEffect(()=>{
-    dispatch(getAllCars)
-  },[refresh])
-  console.log(refresh);
+    dispatch(getAllCars(obj))
+  },[refresh,location.search])
+  console.log("sp",searchParams.get("maxPrice"));
     return (
         <Flex>
             <SideBar />
