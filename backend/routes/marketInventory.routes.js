@@ -26,7 +26,7 @@ marketInventoryRouter.post("/add",auth,async(req,res)=>{
 
 
 marketInventoryRouter.get("/", async(req,res)=>{
-    const {query,color,minPrice,maxPrice,limit,page} = req.query
+    const {query,color,minPrice,maxPrice,limit,page,minMileage,maxMileage} = req.query
 
     let queryObj = {};
     let skip = {}
@@ -36,6 +36,12 @@ marketInventoryRouter.get("/", async(req,res)=>{
       }
       if(color){
         queryObj.color = color
+    }
+    if(minMileage){
+      queryObj.mileage =  {$gte:minMileage};
+    }
+    if(maxMileage){
+      queryObj.mileage =  {$lte:maxMileage};
     }
     if(minPrice){
         queryObj.price = {$gte:minPrice}
