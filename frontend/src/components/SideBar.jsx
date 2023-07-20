@@ -74,7 +74,7 @@ export const SideBar = () =>{
                         <AccordionPanel textAlign="left">
                             <Stack>
                                <Checkbox value= {"100000"} onChange={handleMaxPrice} defaultChecked={maxPrice==100000}>{"< 10L"}</Checkbox>
-                               <Checkbox  >10L-30L</Checkbox>
+                               
                                <Checkbox value= {"100000"}  onChange={handleMinPrice}>{"> 10L"}</Checkbox>
                             </Stack>
                         </AccordionPanel>
