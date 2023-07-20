@@ -14,6 +14,12 @@ export const SideBar = () =>{
 
     const initialmaxPrice = searchParams.getAll("maxPrice")
     const [maxPrice,setMaxPrice] = useState(initialmaxPrice || "")
+
+    const initialminMileage = searchParams.getAll("minMileage")
+    const [minMileage,setMinMileage] = useState(initialminMileage || "")
+
+    const initialmaxMileage = searchParams.getAll("maxMileage")
+    const [maxMileage,setMaxMileage] = useState(initialmaxMileage || "")
     useEffect(()=>{
         let params = {
             color
@@ -22,8 +28,10 @@ export const SideBar = () =>{
         }
         maxPrice && (params.maxPrice = maxPrice)
         minPrice && (params.minPrice = minPrice)
+        maxMileage && (params.maxMileage = maxMileage)
+        minMileage && (params.minMileage = minMileage)
         setSearchParams(params)
-    },[color,maxPrice,minPrice])
+    },[color,maxPrice,minPrice,maxMileage,minMileage])
     const handleColor = (e)=>{
         const {value} = e.target
         let newColor = [...color]
@@ -52,6 +60,24 @@ export const SideBar = () =>{
             setMinPrice("")
         }else{
             setMinPrice(value)
+        }
+    }
+    const handleMaxMileage =(e)=> {
+        const {value} = e.target
+       
+        if(maxMileage==value){
+            setMaxMileage("")
+        }else{
+            setMaxMileage(value)
+        }
+    }
+    const handleMinMileage =(e)=> {
+        const {value} = e.target
+       
+        if(minMileage==value){
+            setMinMileage("")
+        }else{
+            setMinMileage(value)
         }
     }
     console.log("mp",maxPrice);
@@ -109,9 +135,8 @@ export const SideBar = () =>{
                         </h2>
                         <AccordionPanel  >
                             <Stack>
-                               <Checkbox>{"< 20"}</Checkbox>
-                               <Checkbox>20-30</Checkbox>
-                               <Checkbox>{"> 30"}</Checkbox>
+                               <Checkbox value= {"15"} onChange={handleMaxMileage}>{"< 15"}</Checkbox>
+                               <Checkbox value= {"15"} onChange={handleMinMileage}>{"> 15"}</Checkbox>
                             </Stack>
                         </AccordionPanel>
                     </AccordionItem>

@@ -19,7 +19,9 @@ export const BuyCar = () =>{
     params:{
         color:searchParams.getAll("color"),
         maxPrice:searchParams.get("maxPrice"),
-        minPrice:searchParams.get("minPrice")
+        minPrice:searchParams.get("minPrice"),
+        maxMileage:searchParams.get("maxMileage"),
+        minMileage:searchParams.get("minMileage")
 
     }
    }
