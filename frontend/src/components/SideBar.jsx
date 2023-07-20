@@ -1,13 +1,60 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Checkbox, Divider, HStack, Heading, Stack, Text } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
 
 
 export const SideBar = () =>{
     const [searchParams,setSearchParams] = useSearchParams()
-    const initialPrice = searchParams.getAll("price")
-    const [price,setPrice] = useState(initialPrice || [])
+    const initialColor = searchParams.getAll("color")
+    const [color,setColor] = useState(initialColor || [])
+
+    const initialminPrice = searchParams.getAll("minPrice")
+    const [minPrice,setMinPrice] = useState(initialminPrice || "")
+
+    const initialmaxPrice = searchParams.getAll("maxPrice")
+    const [maxPrice,setMaxPrice] = useState(initialmaxPrice || "")
+    useEffect(()=>{
+        let params = {
+            color
+            
+            
+        }
+        maxPrice && (params.maxPrice = maxPrice)
+        minPrice && (params.minPrice = minPrice)
+        setSearchParams(params)
+    },[color,maxPrice,minPrice])
+    const handleColor = (e)=>{
+        const {value} = e.target
+        let newColor = [...color]
+        if(newColor.includes(value)){
+            newColor = newColor.filter((el)=> el !== value)
+        }else{
+            newColor.push(value)
+        }
+        setColor(newColor)
+        console.log(value)
+    }
+    const handleMaxPrice = (e)=>{
+        const {value} = e.target
+       
+        if(maxPrice==value){
+            setMaxPrice("")
+        }else{
+            setMaxPrice(value)
+        }
+        console.log(value)
+    }
+    const handleMinPrice =(e)=> {
+        const {value} = e.target
+       
+        if(minPrice==value){
+            setMinPrice("")
+        }else{
+            setMinPrice(value)
+        }
+    }
+    console.log("mp",maxPrice);
     return (
         <Box ml={{ base: '10px', md: '15px', lg: '50px' }} mr={10}>
                 <HStack>
@@ -26,9 +73,9 @@ export const SideBar = () =>{
                         </h2>
                         <AccordionPanel textAlign="left">
                             <Stack>
-                               <Checkbox >{"< 10L"}</Checkbox>
+                               <Checkbox value= {"100000"} onChange={handleMaxPrice} defaultChecked={maxPrice==100000}>{"< 10L"}</Checkbox>
                                <Checkbox  >10L-30L</Checkbox>
-                               <Checkbox  >{"> 20L"}</Checkbox>
+                               <Checkbox value= {"100000"}  onChange={handleMinPrice}>{"> 10L"}</Checkbox>
                             </Stack>
                         </AccordionPanel>
                     </AccordionItem>
@@ -43,11 +90,11 @@ export const SideBar = () =>{
                         </h2>
                         <AccordionPanel textAlign="left">
                             <Stack>
-                               <Checkbox >White</Checkbox>
-                               <Checkbox >Silver</Checkbox>
-                               <Checkbox >Red</Checkbox>
-                               <Checkbox >Blue</Checkbox>
-                               <Checkbox >Black</Checkbox>
+                               <Checkbox value= {"White"} onChange={handleColor} defaultChecked={color.includes("White")}>White</Checkbox>
+                               <Checkbox value= {"Silver"} onChange={handleColor} defaultChecked={color.includes("Silver")}>Silver</Checkbox>
+                               <Checkbox value= {"Red"} onChange={handleColor} defaultChecked={color.includes("Red")}>Red</Checkbox>
+                               <Checkbox value= {"Blue"} onChange={handleColor} defaultChecked={color.includes("Blue")}>Blue</Checkbox>
+                               <Checkbox value= {"Black"} onChange={handleColor} defaultChecked={color.includes("Black")}>Black</Checkbox>
                             </Stack>
                         </AccordionPanel>
                     </AccordionItem>
