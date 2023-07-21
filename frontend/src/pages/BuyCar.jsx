@@ -25,10 +25,12 @@ export const BuyCar = () =>{
 
     }
    }
+
   useEffect(()=>{
     dispatch(getAllCars(obj))
   },[refresh,location.search])
-  console.log("sp",searchParams.get("maxPrice"));
+  
+  console.log("coloe",searchParams.getAll("color"));
     return (
         <Flex>
             <SideBar />

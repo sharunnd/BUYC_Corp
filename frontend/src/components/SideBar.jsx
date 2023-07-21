@@ -32,6 +32,7 @@ export const SideBar = () =>{
         minMileage && (params.minMileage = minMileage)
         setSearchParams(params)
     },[color,maxPrice,minPrice,maxMileage,minMileage])
+   
     const handleColor = (e)=>{
         const {value} = e.target
         let newColor = [...color]
