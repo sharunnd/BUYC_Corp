@@ -8,7 +8,7 @@ require("dotenv").config()
 
 // Registration/signup route
 userRouter.post("/signup",async(req,res)=>{
-    const { email, name, password, city } = req.body;
+    const { email, name, password, city ,role} = req.body;
     try {
         const user = await UserModel.findOne({email})
         if(user){
@@ -18,7 +18,7 @@ userRouter.post("/signup",async(req,res)=>{
                 if(err){
                     res.status(400).json({error:err.message})
                 }else{
-                    const user =new UserModel({name,email,password:hash,city})
+                    const user =new UserModel({name,email,password:hash,city,role})
                     await user.save()
                     res.status(200).json({msg:"Registration successful",user:req.body})
                 }
@@ -41,7 +41,7 @@ userRouter.post("/login",async(req,res)=>{
                     let token = jwt.sign({ userID: user._id,user:user.name }, `${process.env.SECRET_KEY}`,{
                         expiresIn:"7d"
                     });
-                    res.status(200).json({msg:"Login successful",token})
+                    res.status(200).json({msg:"Login successful",token,role:user.role})
                 }else{
                     res.status(400).json({msg:"wrong credentials!"})
                 }

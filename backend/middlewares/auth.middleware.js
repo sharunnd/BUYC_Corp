@@ -14,7 +14,7 @@ const auth = (req,res,next)=>{
                 res.status(400).json({msg:"Not Authorized!"})
             }
         } catch (error) {
-            res.status(400).json({error:error.message})
+            res.status(400).json({error:"Please login!"})
         }
     }else{
         res.status(400).json({msg:"Please login!!"})
