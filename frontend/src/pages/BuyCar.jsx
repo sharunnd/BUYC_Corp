@@ -30,7 +30,7 @@ export const BuyCar = () =>{
     dispatch(getAllCars(obj))
   },[refresh,location.search])
   
-  console.log("coloe",searchParams.getAll("color"));
+  // console.log("coloe",searchParams.getAll("color"));
     return (
         <Flex>
             <SideBar />
