@@ -35,7 +35,7 @@ marketInventoryRouter.get("/", async(req,res)=>{
         queryObj.title = {$regex: query, $options: "i"};
       }
       if(color){
-        queryObj.color = {$regex: color, $options: "i"}
+        queryObj.color = color
     }
     if(minMileage){
       queryObj.mileage =  {$gte:minMileage};
