@@ -2,7 +2,7 @@ import { Box, Button, Flex, Heading, Input, useToast } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOGOUT_SUCCESS } from "../redux/loginReducer/actionTypes";
 import { getAllOemSpecs } from "../redux/oemReducer/action";
 
@@ -13,7 +13,7 @@ export const Navbar = () => {
     const toast = useToast()
     const [query,setQuery] = useState("")
     const ref  = useRef()
-   
+    const navigate = useNavigate()
     const paramObj = {
         params :{
             query:query && query
@@ -39,6 +39,7 @@ export const Navbar = () => {
             duration: 1000,
             isClosable: true,
           });
+          navigate("/")
         Cookies.remove("token")
         dispatch({type:LOGOUT_SUCCESS})
     }

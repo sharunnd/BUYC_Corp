@@ -29,9 +29,6 @@ import {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const toast = useToast()
-    const store = useSelector((store)=>store.loginReducer.token)
-
-
 
     const handleLogin = ()=>{
       const loginData = {
@@ -48,10 +45,12 @@ import {
           duration: 1000,
           isClosable: true,
         });
-  
+        console.log(res);
         // Store token in cookies
         Cookies.set("token", res.data.token);
-  
+        // Store role in cookies
+        Cookies.set("role",res.data.role)
+        
         setTimeout(() => {
             navigate("/buycar");
         }, 500);
@@ -70,7 +69,6 @@ import {
     })
     
     }
-
     return (
       <Box
         bg="#f9efef"
@@ -90,38 +88,19 @@ import {
           <Heading fontWeight={500}>Login</Heading>
           <VStack m="auto" p={{ base: '10px', md: '20px', lg: '50px' }} spacing={5}>
             <FormControl isRequired>
-              <FormLabel>Email</FormLabel>
               <Input type="email" placeholder="Enter email" onChange={(e)=>setEmail(e.target.value)}/>
             </FormControl>
             <FormControl isRequired>
-              <FormLabel>Password</FormLabel>
               <Input type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
             </FormControl>
           </VStack> 
-          <Button bg="#673ab7" color="white" onClick={handleLogin}>
+          <Button bg="#673ab7" color="white" onClick={handleLogin} _hover={{bg:"#620cf6"}}>
             Login
           </Button>
-          <Text mt={5}>Or log in with:</Text>
-          <Flex mt={5}>
-            <Box m="auto" alignItems="center">
-              <Button mr={5}>
-                <IconButton color="blue" fontSize="20px" icon={<FcGoogle />} />
-                GOOGLE
-              </Button>
-              <Button>
-                <IconButton
-                  color="blue"
-                  fontSize="20px"
-                  icon={<AiOutlineFacebook />}
-                />
-                FACEBOOK
-              </Button>
-            </Box>
-          </Flex>
           <HStack mt={5} alignItems="center" justifyContent="center">
   
             <Text>Need an account?</Text>
-            <NavLink to="/register"><Text color="#5e03f1">Signup</Text></NavLink>
+            <NavLink to="/signup"><Text color="#5e03f1">Signup</Text></NavLink>
   
           </HStack>
         </Box>

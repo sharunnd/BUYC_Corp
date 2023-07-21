@@ -55,14 +55,26 @@ export const SellCar = () => {
       price: +price,
     };
     console.log(carObj);
-    dispatch(addCarDetails(carObj))
-    toast({
-      position: "top",
-      title: `Car details uploaded`,
-      status: "success",
-      duration: 1000,
-      isClosable: true,
-    });
+    dispatch(addCarDetails(carObj)).then((res)=>{
+      toast({
+        position: "top",
+        title: `${res.data.msg}`,
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+      });
+    })
+    .catch((err)=>{
+      toast({
+        position: "top",
+        title: `Try another image`,
+        status: "error",
+        duration: 1500,
+        isClosable: true,
+      });
+      console.log(err);
+    })
+    
   };
   const addDescriptionItem = () => {
     if (tempDescription.trim() !== "") {

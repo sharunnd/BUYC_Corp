@@ -25,17 +25,19 @@ export const BuyCarCard = ({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toast = useToast()
     const dispatch = useDispatch()
-  const openModal = () => {
+    const userRole = Cookies.get("role")
+
+    const openModal = () => {
     setIsModalOpen(true);
-  };
+    };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
   const token = Cookies.get("token")
   
-  const handleDelete = ()=>{
-    try {
+const handleDelete = ()=>{
+    
       axios.delete(`https://buycars-gksq.onrender.com/cars/delete/${_id}`,{
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -47,7 +49,7 @@ export const BuyCarCard = ({
                 position: "top",
                 title: `${res.data.msg}`,
                 status: "success",
-                duration: 1000,
+                  duration: 1000,
                 isClosable: true,
               });
               
@@ -60,11 +62,9 @@ export const BuyCarCard = ({
             duration: 1000,
             isClosable: true,
           });
-        console.log(err);
+        console.log(err,"ajhadka");
     })
-    } catch (error) {
-      console.log(error);
-    }
+    
     
   }
   
@@ -75,10 +75,10 @@ export const BuyCarCard = ({
       <Text>{title}</Text>
       <Text mt={2}>Price: ₹{price}</Text>
       <Button mt={2} onClick={openModal}>View Details</Button>
-      <Flex mt={2} justifyContent={"space-around"}>
+      {userRole=="dealer" ? <Flex mt={2} justifyContent={"space-around"}>
         <Button><Link to={`/edit/${_id}`}>Edit</Link></Button>
         <Button onClick={handleDelete}>Delete</Button>
-      </Flex>
+      </Flex>: ""}
     </GridItem>
     <Modal isOpen={isModalOpen} onClose={closeModal}>
     <ModalOverlay />

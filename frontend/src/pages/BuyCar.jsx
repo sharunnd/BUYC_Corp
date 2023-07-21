@@ -1,10 +1,11 @@
 import { Box, Flex, Grid } from "@chakra-ui/react"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCars } from "../redux/carsReducer/action";
 import { BuyCarCard } from "../components/BuyCarCard";
 import { SideBar } from "../components/SideBar";
 import { useLocation, useSearchParams } from "react-router-dom";
+
 
 
 
@@ -15,6 +16,7 @@ export const BuyCar = () =>{
   const [searchParams] = useSearchParams()
   const refresh = useSelector((store)=>store.carsReducer.refreshPage)
   const location = useLocation()
+  
   let obj={
     params:{
         color:searchParams.getAll("color"),
@@ -30,7 +32,6 @@ export const BuyCar = () =>{
     dispatch(getAllCars(obj))
   },[refresh,location.search])
   
-  // console.log("coloe",searchParams.getAll("color"));
     return (
         <Flex>
             <SideBar />
