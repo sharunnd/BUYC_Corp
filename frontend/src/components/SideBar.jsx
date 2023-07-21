@@ -56,24 +56,6 @@ export const SideBar = () => {
     console.log(value);
   };
 
-const handleMaxMileage =(e)=> {
-    const {value} = e.target
-   
-    if(maxMileage==value){
-        setMaxMileage("")
-    }else{
-        setMaxMileage(value)
-    }
-}
-const handleMinMileage =(e)=> {
-    const {value} = e.target
-   
-    if(minMileage==value){
-        setMinMileage("")
-    }else{
-        setMinMileage(value)
-    }
-}
   const handlePrice = (value) => {
     
     if(value=="1"){
@@ -89,6 +71,18 @@ const handleMinMileage =(e)=> {
 
   };
 
+const handleMileage = (value)=>{
+    if(value=="1"){
+        setMaxMileage("")
+        setMinMileage("")
+    }else if(value=="2"){
+        setMaxMileage("15")
+        setMinMileage("")
+    }else{
+        setMaxMileage("")
+        setMinMileage("15")
+    }
+}
   console.log();
   return (
     <Box ml={{ base: "10px", md: "15px", lg: "50px" }} mr={10}>
@@ -182,14 +176,13 @@ const handleMinMileage =(e)=> {
             </AccordionButton>
           </h2>
           <AccordionPanel>
-            <Stack>
-              <Checkbox value={"15"} onChange={handleMaxMileage}>
-                {"< 15"}
-              </Checkbox>
-              <Checkbox value={"15"} onChange={handleMinMileage}>
-                {"> 15"}
-              </Checkbox>
-            </Stack>
+            <RadioGroup onChange={(value)=>handleMileage(value)} defaultValue="1">
+              <Stack >
+                <Radio value="1" >Default</Radio>
+                <Radio value="2" >{"< 15"}</Radio>
+                <Radio value="3" >{"> 15"}</Radio>
+              </Stack>
+            </RadioGroup>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
