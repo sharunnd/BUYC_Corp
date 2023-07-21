@@ -41,7 +41,7 @@ export const SellCar = () => {
   }
   const handleDetails = () => {
     const carObj = {
-      color,
+      color:color.toLowerCase(),
       description: [...descr],
       image,
       title: model,
