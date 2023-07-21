@@ -16,6 +16,7 @@ export const addCarDetails =(carObj)=>(dispatch)=>{
         console.log("sell",res);
     })
     .catch((err)=>{
+        
         dispatch({type:SELL_FAILURE})
     })
 }

@@ -54,6 +54,7 @@ export const SellCar = () => {
       registration_place,
       price: +price,
     };
+    console.log(carObj);
     dispatch(addCarDetails(carObj))
     toast({
       position: "top",
