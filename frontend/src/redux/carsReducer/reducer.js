@@ -5,7 +5,6 @@ const initialState = {
     isError:false,
     allCars:[],
     refreshPage:false
-    
 }
 
 

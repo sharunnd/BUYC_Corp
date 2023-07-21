@@ -4,7 +4,8 @@ const initialState = {
     isLoading:false,
     isError:false,
     isAuth:false,
-    token:""
+    token:"",
+    role:""
     
 }
 

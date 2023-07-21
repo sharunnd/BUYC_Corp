@@ -1,4 +1,4 @@
-import { Box, Button, Center, FormControl, Heading, HStack, IconButton, Input, SimpleGrid,Text,Image } from "@chakra-ui/react";
+import { Box, Button, Center, FormControl, Heading, HStack, IconButton, Input, SimpleGrid,Text } from "@chakra-ui/react";
 import { AiOutlineApple, AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
 import { BsPinterest, BsSnapchat } from "react-icons/bs";
 import { CiTwitter } from "react-icons/ci";
@@ -6,7 +6,7 @@ import { CiTwitter } from "react-icons/ci";
 
 function Footer(){
     return (
-        <Box bg="#dbdbf5" color="black">
+        <Box bg="#dbdbf5" color="black" mt={10}>
         <Heading color="black" fontSize={{ base: '12px', md: '20px', lg: '36px' }} textAlign="left" ml={{ base: '10px', md: '15px', lg: '50px' }} pt={10}>BuyCars</Heading>
 
          <Center>
