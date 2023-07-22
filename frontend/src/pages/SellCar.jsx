@@ -12,6 +12,7 @@ import { useState } from "react";
 import { addCarDetails } from "../redux/sellReducer/action";
 import { useDispatch } from "react-redux";
 import { AddIcon } from "@chakra-ui/icons";
+import Cookies from "js-cookie";
 
 export const SellCar = () => {
   const [color, setColor] = useState("");
@@ -28,7 +29,8 @@ export const SellCar = () => {
   const [model, setModel] = useState("");
   const [tempDescription, setTempDescription] = useState("");
   const toast = useToast();
-
+  const token = Cookies.get("token")
+  
   const dispatch = useDispatch();
   function convertToBase64(e) {
     let reader = new FileReader();
@@ -57,7 +59,7 @@ export const SellCar = () => {
       price: +price,
     };
     console.log(carObj);
-    dispatch(addCarDetails(carObj))
+    dispatch(addCarDetails(carObj,token))
       .then((res) => {
         toast({
           position: "top",
