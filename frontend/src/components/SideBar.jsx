@@ -6,13 +6,11 @@ import {
   AccordionPanel,
   Box,
   Checkbox,
-  Divider,
   HStack,
   Heading,
   Radio,
   RadioGroup,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -57,32 +55,30 @@ export const SideBar = () => {
   };
 
   const handlePrice = (value) => {
-    
-    if(value=="1"){
-        setMaxPrice("")
-        setMinPrice("")
-    }else if(value=="2"){
-        setMaxPrice("1000000")
-        setMinPrice("")
-    }else{
-        setMaxPrice("")
-        setMinPrice("1000000")
+    if (value == "1") {
+      setMaxPrice("");
+      setMinPrice("");
+    } else if (value == "2") {
+      setMaxPrice("1000000");
+      setMinPrice("");
+    } else {
+      setMaxPrice("");
+      setMinPrice("1000000");
     }
-
   };
 
-const handleMileage = (value)=>{
-    if(value=="1"){
-        setMaxMileage("")
-        setMinMileage("")
-    }else if(value=="2"){
-        setMaxMileage("15")
-        setMinMileage("")
-    }else{
-        setMaxMileage("")
-        setMinMileage("15")
+  const handleMileage = (value) => {
+    if (value == "1") {
+      setMaxMileage("");
+      setMinMileage("");
+    } else if (value == "2") {
+      setMaxMileage("15");
+      setMinMileage("");
+    } else {
+      setMaxMileage("");
+      setMinMileage("15");
     }
-}
+  };
   console.log();
   return (
     <Box ml={{ base: "10px", md: "15px", lg: "50px" }} mr={10}>
@@ -108,11 +104,14 @@ const handleMileage = (value)=>{
             </AccordionButton>
           </h2>
           <AccordionPanel textAlign="left">
-            <RadioGroup onChange={(value)=>handlePrice(value)} defaultValue="1">
-              <Stack >
-                <Radio value="1" >Default</Radio>
-                <Radio value="2" >{"< 10L"}</Radio>
-                <Radio value="3" >{"> 10L"}</Radio>
+            <RadioGroup
+              onChange={(value) => handlePrice(value)}
+              defaultValue="1"
+            >
+              <Stack>
+                <Radio value="1">Default</Radio>
+                <Radio value="2">{"< 10L"}</Radio>
+                <Radio value="3">{"> 10L"}</Radio>
               </Stack>
             </RadioGroup>
           </AccordionPanel>
@@ -129,37 +128,37 @@ const handleMileage = (value)=>{
           <AccordionPanel textAlign="left">
             <Stack>
               <Checkbox
-                value={"White"}
+                value={"white"}
                 onChange={handleColor}
-                defaultChecked={color.includes("White")}
+                defaultChecked={color.includes("white")}
               >
                 White
               </Checkbox>
               <Checkbox
-                value={"Silver"}
+                value={"silver"}
                 onChange={handleColor}
-                defaultChecked={color.includes("Silver")}
+                defaultChecked={color.includes("silver")}
               >
                 Silver
               </Checkbox>
               <Checkbox
-                value={"Red"}
+                value={"red"}
                 onChange={handleColor}
-                defaultChecked={color.includes("Red")}
+                defaultChecked={color.includes("red")}
               >
                 Red
               </Checkbox>
               <Checkbox
-                value={"Blue"}
+                value={"blue"}
                 onChange={handleColor}
-                defaultChecked={color.includes("Blue")}
+                defaultChecked={color.includes("blue")}
               >
                 Blue
               </Checkbox>
               <Checkbox
-                value={"Black"}
+                value={"black"}
                 onChange={handleColor}
-                defaultChecked={color.includes("Black")}
+                defaultChecked={color.includes("black")}
               >
                 Black
               </Checkbox>
@@ -176,11 +175,14 @@ const handleMileage = (value)=>{
             </AccordionButton>
           </h2>
           <AccordionPanel>
-            <RadioGroup onChange={(value)=>handleMileage(value)} defaultValue="1">
-              <Stack >
-                <Radio value="1" >Default</Radio>
-                <Radio value="2" >{"< 15"}</Radio>
-                <Radio value="3" >{"> 15"}</Radio>
+            <RadioGroup
+              onChange={(value) => handleMileage(value)}
+              defaultValue="1"
+            >
+              <Stack>
+                <Radio value="1">Default</Radio>
+                <Radio value="2">{"< 15"}</Radio>
+                <Radio value="3">{"> 15"}</Radio>
               </Stack>
             </RadioGroup>
           </AccordionPanel>
