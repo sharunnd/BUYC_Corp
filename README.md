@@ -49,10 +49,12 @@ Chakra-ui
 
 
 # Signup Page
-![Screenshot (442)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/06a6ed37-2922-4bd1-a354-db3f0ab8a2f0)
+![Screenshot (444)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/989936a0-990c-4e12-820e-95c5314f2a74)
+
 
 # Login Page
-![Screenshot (440)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/d13f40da-7942-4f0e-ad5f-71af19f99dc5)
+![Screenshot (44)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/8adb38c3-e2f9-4e00-bb85-a7b9fd71c419)
+
 
 # Original Equipment Manufacturers Specifications page
 ![Screenshot (437)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/b60c4075-bfcc-4ab7-a4f9-b3f443e15790)
@@ -60,7 +62,9 @@ Chakra-ui
 ## Search for Original Equipment Manufacturers Specifications 
 ![Screenshot (438)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/64d1713e-ed56-47e2-8d8e-e70c833215c8)
 
-## Delears Inventory
-### Users can view, edit and delete the car details
-![Screenshot (439)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/acac3991-7545-4b46-8cb8-3a3c3c273f5e)
+## Cars inventory page for dealers
+### Dealers can view, edit and delete the car details
+![Screenshot](https://github.com/sharunnd/BUYC_Corp/assets/119393327/b1887bf8-2163-4216-931c-14ab7f048663)
 
+## Cars inventory page for buyers
+![Screenshot (446)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/762b8317-a473-46e9-833f-749cbcb28124)
