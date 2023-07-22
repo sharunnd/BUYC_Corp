@@ -3,10 +3,11 @@ import axios from "axios"
 import Cookies from "js-cookie"
 import { SELL_FAILURE, SELL_POST_SUCCESS, SELL_REQUEST } from "./actionTypes"
 
-const token = Cookies.get("token")
-export const addCarDetails =(carObj)=>(dispatch)=>{
+// const token = Cookies.get("token")
+export const addCarDetails =(carObj,token)=>(dispatch)=>{
     dispatch({type:SELL_REQUEST})
-    return axios.post(`https://buycars-gksq.onrender.com/cars/add`,carObj,{
+     
+   return axios.post(`https://buycars-gksq.onrender.com/cars/add`,carObj,{
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
