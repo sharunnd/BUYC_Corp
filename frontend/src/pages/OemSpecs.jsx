@@ -4,8 +4,6 @@ import {
   TableCaption,
   TableContainer,
   Tbody,
-  Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -16,20 +14,21 @@ import { useEffect } from "react";
 import { getAllOemSpecs } from "../redux/oemReducer/action";
 import { OemSpecCard } from "../components/OemSpecCard";
 
-
 export const OemSpecs = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const oemSpecs = useSelector((store) => store.oemReducer.oemSpecs);
   const isLoading = useSelector((store) => store.oemReducer.isLoading);
-  useEffect(()=>{
-    dispatch(getAllOemSpecs)
-  },[])
+  useEffect(() => {
+    dispatch(getAllOemSpecs);
+  }, []);
   console.log(isLoading);
   return (
     <Box mb={300}>
       <TableContainer p={10}>
-        <Table variant='striped' colorScheme='gray'>
-          <TableCaption>Original Equipment Manufacturers Specifications</TableCaption>
+        <Table variant="striped" colorScheme="gray">
+          <TableCaption>
+            Original Equipment Manufacturers Specifications
+          </TableCaption>
           <Thead>
             <Tr>
               <Th textAlign="center">model</Th>
@@ -41,12 +40,15 @@ export const OemSpecs = () => {
               <Th textAlign="center">Max Speed</Th>
             </Tr>
           </Thead>
-          {isLoading ? <Spinner mt={50} ml={700}/> : (
-          <Tbody >
-            {oemSpecs && oemSpecs.map((item)=>(
-               <OemSpecCard key={item._id} {...item}/>
-            ))}
-          </Tbody>
+          {isLoading ? (
+            <Spinner mt={50} ml={700} />
+          ) : (
+            <Tbody>
+              {oemSpecs &&
+                oemSpecs.map((item) => (
+                  <OemSpecCard key={item._id} {...item} />
+                ))}
+            </Tbody>
           )}
         </Table>
       </TableContainer>

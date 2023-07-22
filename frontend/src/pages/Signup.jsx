@@ -1,12 +1,9 @@
 import {
   Box,
   Button,
-  Flex,
   FormControl,
-  FormLabel,
   HStack,
   Heading,
-  IconButton,
   Input,
   Select,
   SimpleGrid,
@@ -14,8 +11,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { AiOutlineFacebook } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -36,7 +31,7 @@ export const Signup = () => {
 
   const dispatch = useDispatch();
   const handleRegister = () => {
-    if(!email || !fName || !role || !password){
+    if (!email || !fName || !role || !password) {
       toast({
         position: "top",
         title: `Please fill the required fields`,
@@ -44,14 +39,14 @@ export const Signup = () => {
         duration: 1000,
         isClosable: true,
       });
-      return 
+      return;
     }
     const regData = {
       email,
       password,
       name: `${fName} ${lastName}`,
       city,
-      role
+      role,
     };
     dispatch({ type: REGISTER_REQUEST });
     axios
@@ -123,8 +118,11 @@ export const Signup = () => {
               onChange={(e) => setCity(e.target.value)}
             />
           </FormControl>
-          
-          <Select placeholder="Select your role" onChange={(e)=>setRole(e.target.value)}>
+
+          <Select
+            placeholder="Select your role"
+            onChange={(e) => setRole(e.target.value)}
+          >
             <option value="dealer">Dealer</option>
             <option value="customer">Customer</option>
           </Select>
@@ -136,14 +134,12 @@ export const Signup = () => {
             />
           </FormControl>
           <FormControl>
-            
             <Input
               type="password"
               placeholder="Enter password"
               onChange={(e) => setPass(e.target.value)}
             />
           </FormControl>
-          
         </SimpleGrid>
         <Button
           mt={10}

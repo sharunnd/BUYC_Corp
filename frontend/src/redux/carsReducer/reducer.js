@@ -28,7 +28,7 @@ export const reducer = (state=initialState,{type,payload})=>{
         } 
         case CARS_DELETE_SUCCESS:{
             return {
-                ...state,isLoading:false,refreshPage:true
+                ...state,isLoading:false,refreshPage:true,allCars:payload
             }
         }      
         default:{

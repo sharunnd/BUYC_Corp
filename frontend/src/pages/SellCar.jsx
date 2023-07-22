@@ -4,12 +4,14 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  IconButton,
   Input,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { addCarDetails } from "../redux/sellReducer/action";
 import { useDispatch } from "react-redux";
+import { AddIcon } from "@chakra-ui/icons";
 
 export const SellCar = () => {
   const [color, setColor] = useState("");
@@ -25,9 +27,9 @@ export const SellCar = () => {
   const [descr, setDesc] = useState([]);
   const [model, setModel] = useState("");
   const [tempDescription, setTempDescription] = useState("");
-  const toast = useToast()
+  const toast = useToast();
 
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
   function convertToBase64(e) {
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
@@ -41,7 +43,7 @@ export const SellCar = () => {
   }
   const handleDetails = () => {
     const carObj = {
-      color:color.toLowerCase(),
+      color: color.toLowerCase(),
       description: [...descr],
       image,
       title: model,
@@ -55,26 +57,26 @@ export const SellCar = () => {
       price: +price,
     };
     console.log(carObj);
-    dispatch(addCarDetails(carObj)).then((res)=>{
-      toast({
-        position: "top",
-        title: `${res.data.msg}`,
-        status: "success",
-        duration: 1000,
-        isClosable: true,
+    dispatch(addCarDetails(carObj))
+      .then((res) => {
+        toast({
+          position: "top",
+          title: `${res.data.msg}`,
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        toast({
+          position: "top",
+          title: `Try another image`,
+          status: "error",
+          duration: 1500,
+          isClosable: true,
+        });
+        console.log(err);
       });
-    })
-    .catch((err)=>{
-      toast({
-        position: "top",
-        title: `Try another image`,
-        status: "error",
-        duration: 1500,
-        isClosable: true,
-      });
-      console.log(err);
-    })
-    
   };
   const addDescriptionItem = () => {
     if (tempDescription.trim() !== "") {
@@ -116,12 +118,21 @@ export const SellCar = () => {
               value={tempDescription}
               onChange={(e) => setTempDescription(e.target.value)}
             />
-            <Button onClick={addDescriptionItem}>Add Description</Button>
+            <IconButton onClick={addDescriptionItem}  icon={<AddIcon />} ml={5}/>
           </Flex>
           <FormLabel>Select Image</FormLabel>
           <Input type="file" onChange={convertToBase64} />
         </FormControl>
-        <Button onClick={handleDetails} mt={10} mb={100}>Add Details</Button>
+        <Button
+          onClick={handleDetails}
+          mt={10}
+          mb={100}
+          bg="#673ab7"
+          _hover={{ bg: "#620cf6" }}
+          color="white"
+        >
+          Add Details
+        </Button>
       </Box>
     </Box>
   );
