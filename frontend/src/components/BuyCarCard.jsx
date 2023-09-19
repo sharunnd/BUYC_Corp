@@ -22,7 +22,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCarDetails } from "../redux/carsReducer/action";
-import { DeleteIcon, SearchIcon } from "@chakra-ui/icons";
+import { DeleteIcon, } from "@chakra-ui/icons";
 import { AiOutlineEdit } from "react-icons/ai";
 
 export const BuyCarCard = ({
