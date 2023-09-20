@@ -23,17 +23,17 @@ function Footer() {
     <Box bg="#dbdbf5" color="black">
       <Heading
         color="black"
-        fontSize={{ base: "12px", md: "20px", lg: "36px" }}
+        fontSize={{ base: "16px", sm: "18px", md: "20px", lg: "36px" }}
         textAlign="left"
-        ml={{ base: "10px", md: "15px", lg: "50px" }}
-        pt={10}
+        ml={{ base: "10px", sm: "15px", md: "20px", lg: "50px" }}
+        pt={{ base: 4, sm: 6, md: 8, lg: 10 }}
       >
         BuyCars
       </Heading>
 
-      <Center>
-        <SimpleGrid columns={4} textAlign="left" mt={50}>
-          <Box fontSize={{ base: "10px", md: "12px", lg: "16px" }}>
+      <Center mx={10}>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} textAlign="left" mt={{ base: 8, sm: 10, md: 12, lg: 14 }}>
+          <Box fontSize={{ base: "14px", sm: "16px", md: "18px" }}>
             <Text color="black" mb={5}>
               CUSTOMER SERVICE
             </Text>
@@ -41,8 +41,7 @@ function Footer() {
             <Text>Track order</Text>
             <Box mt={10}></Box>
           </Box>
-          {/* <Spacer></Spacer> */}
-          <Box fontSize={{ base: "10px", md: "12px", lg: "16px" }}>
+          <Box fontSize={{ base: "14px", sm: "16px", md: "18px"}}>
             <Text color="black" mb={5}>
               COMPANY
             </Text>
@@ -51,58 +50,58 @@ function Footer() {
             <Text>Privacy Policy</Text>
             <Text>Blog</Text>
           </Box>
-          <Box fontSize={{ base: "10px", md: "12px", lg: "16px" }}>
+          <Box fontSize={{ base: "14px", sm: "16px", md: "18px"}}>
             <Text color="black" mb={5}>
               CONNECT WITH US
             </Text>
-            <Text>
+            <Text mt={1}>
               <IconButton
-                size={{ base: "10px", md: "10px", lg: "20px" }}
-                fontSize={{ base: "10px", md: "10px", lg: "20px" }}
+                size="sm"
+                fontSize={{ base: "16px", sm: "16px", md: "16px"}}
                 icon={<AiOutlineFacebook />}
               />
               1M People like this
             </Text>
-            <Text>
+            <Text mt={1}>
               <IconButton
-                size={{ base: "10px", md: "10px", lg: "20px" }}
-                fontSize={{ base: "10px", md: "10px", lg: "20px" }}
+                size="sm"
+                fontSize={{ base: "16px", sm: "16px", md: "16px" }}
                 icon={<AiOutlineInstagram />}
               />
               2M Followers
             </Text>
             <HStack>
-              <Text>
+              <Text mt={3}>
                 <IconButton
-                  size={{ base: "10px", md: "10px", lg: "20px" }}
-                  fontSize={{ base: "10px", md: "10px", lg: "20px" }}
+                  size="sm"
+                  fontSize={{ base: "16px", sm: "16px", md: "16px"}}
                   icon={<CiTwitter />}
                 />
               </Text>
-              <Text>
+              <Text mt={3}>
                 <IconButton
-                  size={{ base: "10px", md: "10px", lg: "20px" }}
-                  fontSize={{ base: "10px", md: "10px", lg: "20px" }}
+                  size="sm"
+                  fontSize={{ base: "16px", sm: "16px", md: "16px" }}
                   icon={<BsPinterest />}
                 />
               </Text>
-              <Text>
+              <Text mt={3}>
                 <IconButton
-                  size={{ base: "10px", md: "10px", lg: "20px" }}
-                  fontSize={{ base: "10px", md: "10px", lg: "20px" }}
+                  size="sm"
+                  fontSize={{ base: "16px", sm: "16px", md: "16px" }}
                   icon={<BsSnapchat />}
                 />
               </Text>
-              <Text>
+              <Text mt={3}>
                 <IconButton
-                  size={{ base: "10px", md: "10px", lg: "20px" }}
-                  fontSize={{ base: "10px", md: "10px", lg: "20px" }}
+                  size="sm"
+                  fontSize={{ base: "16px", sm: "16px", md: "16px" }}
                   icon={<AiOutlineApple />}
                 />
               </Text>
             </HStack>
           </Box>
-          <Box fontSize={{ base: "10px", md: "12px", lg: "16px" }}>
+          <Box fontSize={{ base: "14px", sm: "16px", md: "18px" }}>
             <Text color="black" mb={5}>
               KEEP UP TO DATE
             </Text>
@@ -110,16 +109,16 @@ function Footer() {
             <FormControl>
               <HStack>
                 <Input
-                  size={{ base: "xs", md: "md", lg: "lg" }}
-                  fontSize={{ base: "sm", md: "md", lg: "lg" }}
+                  size={{ base: "sm", sm: "md", md: "lg", lg: "lg" }}
+                  fontSize={{ base: "sm", sm: "md", md: "md", lg: "lg" }}
                   borderRadius="none"
                   placeholder="Enter Email ID"
                   borderTop="none"
                   borderLeft="none"
                 />
                 <Button
-                  size={{ base: "xs", md: "md", lg: "lg" }}
-                  fontSize={{ base: "sm", md: "md", lg: "lg" }}
+                  size={{ base: "sm", sm: "md", md: "md", lg: "lg" }}
+                  fontSize={{ base: "sm", sm: "md", md: "md", lg: "lg" }}
                   color="black"
                   borderRadius="none"
                   bg="yellow.400"
@@ -131,7 +130,7 @@ function Footer() {
           </Box>
         </SimpleGrid>
       </Center>
-      <Center mt={10}>
+      <Center mt={{ base: 10, sm: 12, md: 14, lg: 16 }}>
         <Text>
           &copy; {new Date().getFullYear()} BuyCars. All rights reserved.
         </Text>
