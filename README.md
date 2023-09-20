@@ -45,7 +45,7 @@ Chakra-ui
   
 
 # Landing Page
-![Screenshot (436)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/2a4c286d-a175-4115-bff9-76211846e41f)
+![Screenshot (477)](https://github.com/sharunnd/BUYC_Corp/assets/119393327/99d4297b-c9df-4d29-ba99-9df571afb3af)
 
 
 # Signup Page
