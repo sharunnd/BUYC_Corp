@@ -84,8 +84,6 @@ export const SideBar = () => {
     <Box
       ml={{ base: "5px", md: "15px", lg: "50px" }}
       mr={{ base: 1, md: 10 }}
-      
-      
     >
       <HStack>
         <Heading
