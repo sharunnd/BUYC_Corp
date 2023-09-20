@@ -20,7 +20,7 @@ import { CiTwitter } from "react-icons/ci";
 
 function Footer() {
   return (
-    <Box bg="#dbdbf5" color="black" mt={10}>
+    <Box bg="#dbdbf5" color="black">
       <Heading
         color="black"
         fontSize={{ base: "12px", md: "20px", lg: "36px" }}

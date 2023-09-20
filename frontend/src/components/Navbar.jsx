@@ -1,10 +1,24 @@
-import { Box, Button, Flex, Heading, Input, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  useToast,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGOUT_SUCCESS } from "../redux/loginReducer/actionTypes";
 import { getAllOemSpecs } from "../redux/oemReducer/action";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 export const Navbar = () => {
   const isAuth = useSelector((store) => store.loginReducer.isAuth);
@@ -14,7 +28,6 @@ export const Navbar = () => {
   const [query, setQuery] = useState("");
   const ref = useRef();
   const userRole = Cookies.get("role");
-
   const navigate = useNavigate();
   const paramObj = {
     params: {
@@ -32,7 +45,7 @@ export const Navbar = () => {
   }, [query, isAuth]);
 
   const handleLogout = () => {
-    Cookies.remove("role")
+    Cookies.remove("role");
     toast({
       position: "top",
       title: `Logged out!`,
@@ -44,6 +57,9 @@ export const Navbar = () => {
     Cookies.remove("token");
     dispatch({ type: LOGOUT_SUCCESS });
   };
+
+  const [isSmallerScreen] = useMediaQuery("(max-width: 768px)");
+
   return (
     <Box
       bg="#dbdbf5"
@@ -53,34 +69,101 @@ export const Navbar = () => {
       top={0}
       zIndex="10"
     >
-      <Flex alignItems="center" justifyContent={"space-between"}>
-        <Heading ml={50}>BuyCars</Heading>
-        <Flex w={400} alignItems="center" justifyContent={"space-between"}>
-          <Link to={"/"}>Home</Link>
-          <Link to={"/oemspecs"}>OEM Specs</Link>
-          <Link to={"/buycar"}>Buy</Link>
-          {userRole === "dealer" ? <Link to={"/sellcar"}>Sell</Link> : ""}
-        </Flex>
+      <Flex
+        alignItems="center"
+        justifyContent={{
+          base: "space-between",
+          md: "space-between",
+          lg: "space-around",
+        }}
+        
+      >
+        <Heading ml={{ base: "10px", md: "24px", lg: "40px" }} fontSize={{ base: "20px",sm:"25px",md:"30px",lg:"35px"}}>BuyCars</Heading>
+
+        
         <Input
-          w={200}
+          w={{
+            base: "50%",
+            sm:"30%",
+            md: "30%",
+            lg: "30%", 
+          }}
+          mx={{base:"5px"}}
           type="text"
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search here"
           bg={"white"}
         />
-        {token ? (
-          <Button mr={20} p={2} mt={2} mb={2} onClick={handleLogout}>
-            Logout
-          </Button>
-        ) : (
-          <Flex>
-            <Button mr={5} p={2} mt={2} mb={2}>
-              <Link to={"/login"}>Login</Link>
-            </Button>
-            <Button mr={20} p={2} mt={2} mb={2}>
-              <Link to={"/signup"}>Signup</Link>
-            </Button>
+
+        {!isSmallerScreen ? (
+          <Flex
+            // w="auto"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Box mr={5}>
+            <Link to={"/"}>Home</Link>
+
+            </Box>
+            <Box mr={5}>
+            <Link to={"/oemspecs"}>OEM-Specs</Link>
+            </Box>
+            <Box mr={5}>
+            <Link to={"/buycar"}>Buy</Link>
+            </Box>
+            {userRole === "dealer" ? <Box mr={5}><Link to={"/sellcar"}>Sell</Link></Box> : ""}
+            {token ? (
+              <Button p="10px" mt="10px" mb="10px" onClick={handleLogout}>
+                Logout
+              </Button>
+            ) : (
+              <Flex>
+                <Button p="10px" mt="10px" mb="10px" mr={5}>
+                  <Link to={"/login"}>Login</Link>
+                </Button>
+                <Button p="10px" mt="10px" mb="10px">
+                  <Link to={"/signup"}>Signup</Link>
+                </Button>
+              </Flex>
+            )}
           </Flex>
+        ) : (
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<HamburgerIcon />}
+              variant="outline"
+            />
+            <MenuList>
+              <MenuItem as={Link} to={"/"}>
+                Home
+              </MenuItem>
+              <MenuItem as={Link} to={"/oemspecs"}>
+                OEM Specs
+              </MenuItem>
+              <MenuItem as={Link} to={"/buycar"}>
+                Buy
+              </MenuItem>
+              {userRole === "dealer" && (
+                <MenuItem as={Link} to={"/sellcar"}>
+                  Sell
+                </MenuItem>
+              )}
+              {!token ? (
+                <>
+                  <MenuItem as={Link} to={"/login"}>
+                    Login
+                  </MenuItem>
+                  <MenuItem as={Link} to={"/signup"}>
+                    Signup
+                  </MenuItem>
+                </>
+              ) : (
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              )}
+            </MenuList>
+          </Menu>
         )}
       </Flex>
     </Box>
