@@ -81,7 +81,12 @@ export const SideBar = () => {
   };
   console.log();
   return (
-    <Box ml={{ base: "10px", md: "15px", lg: "50px" }} mr={10}>
+    <Box
+      ml={{ base: "5px", md: "15px", lg: "50px" }}
+      mr={{ base: 1, md: 10 }}
+      
+      
+    >
       <HStack>
         <Heading
           fontSize={{ base: "15px", md: "15px", lg: "24px" }}

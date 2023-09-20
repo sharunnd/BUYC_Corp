@@ -22,7 +22,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCarDetails } from "../redux/carsReducer/action";
-import { DeleteIcon, } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { AiOutlineEdit } from "react-icons/ai";
 
 export const BuyCarCard = ({
@@ -79,20 +79,25 @@ export const BuyCarCard = ({
 
   return (
     <>
-      <GridItem boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5} rounded={10}>
-        <Image src={image} alt="car" w={"100%"} height={300} />
-        <Text>{title}</Text>
+      <GridItem p={3}>
+        <Image src={image} alt="car" w="100%" height={{ base: "auto", sm: "300px" }} />
+        <Text mt={2} fontWeight={500} fontSize={{ base: "sm", sm: "xl" }}>
+          {title}
+        </Text>
         <Text mt={2}>Price: ₹{price}</Text>
 
         <Flex mt={2} justifyContent={"space-around"} alignItems={"center"}>
           {userRole === "dealer" ? (
             <Link to={`/edit/${_id}`}>
-              <IconButton bg={"white"} icon={<AiOutlineEdit fontSize={20} />} />
+              <IconButton
+                bg={"white"}
+                icon={<AiOutlineEdit fontSize={{ base: "20px", sm: "24px" }} />}
+              />
             </Link>
           ) : (
             ""
           )}
-          <Button mt={2} onClick={openModal}>
+          <Button mt={2} fontSize={{ base: "sm", sm: "md" }} onClick={openModal}>
             View Details
           </Button>
 
@@ -101,13 +106,14 @@ export const BuyCarCard = ({
               onClick={handleDelete}
               bg={"white"}
               icon={<DeleteIcon />}
+              fontSize={{ base: "15px", sm: "15px" }}
             />
           ) : (
             ""
           )}
         </Flex>
       </GridItem>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} size="xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>
@@ -116,8 +122,8 @@ export const BuyCarCard = ({
             <Text>Price: ₹{price}</Text>
             <Box mt={5}>
               <UnorderedList textAlign={"left"}>
-                {description.map((item) => (
-                  <ListItem>{item}</ListItem>
+                {description.map((item, index) => (
+                  <ListItem key={index}>{item}</ListItem>
                 ))}
               </UnorderedList>
             </Box>
